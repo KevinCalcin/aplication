@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<meta charset="UTF-8"></meta>
+
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.version.2.css}" />
+<link rel="stylesheet" th:href="@{/css/header.css}" />
+
+</head>
+
+<body>
+
+	<div th:fragment="header">
+
+		<div class="header-area  ">
+			<div id="sticky-header" class="main-header-area">
+
+
+				<div class="main-menu  d-none d-lg-block ">
+					<nav class="navbar navbar-default  " role="navigation">
+
+
+
+						<div class="navbar-collapse collapse color-header">
+							<ul class="nav navbar-nav ">
+
+
+								<li class="pull-left"><a href="#"><img class="b"
+										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
+
+								<div class="sin">
+									<li class="pull-left"><a th:href="@{/pantalla/inicio}">Inicio</a></li>
+
+									<li class="pull-right"><a th:href="@{/user/login}">Iniciar
+											sesión</a></li>
+									<li class="pull-right"><a th:href="@{/user/irRegistrar}">Registrarse</a></li>
+								</div>
+
+
+							</ul>
+						</div>
+
+
+					</nav>
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<div th:fragment="header_user">
+
+		<div class="header-area " th:object="${user}">
+			<div id="sticky-header" class="main-header-area">
+
+
+				<div class="main-menu  d-none d-lg-block ">
+					<nav class="navbar navbar-default  " role="navigation">
+
+
+
+						<div class="navbar-collapse collapse color-header">
+							<ul class="nav navbar-nav ">
+
+
+								<li class="pull-left"><a href="#"><img class="b"
+										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
+
+
+								<li class="pull-right"><a th:href="@{/user/menu}"><img
+										class="b"
+										th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"
+										width="80" alt=""></a></li>
+								<li class="pull-right"><a
+									th:text="'Bienvenido, ' + ${user.name}"></a></li>
+
+								<div class="sin">
+									<li class="pull-left"><a th:href="@{/user/inicio}">Inicio</a></li>
+									<li class="pull-left"><a href="#">Descuento <i class="ti-angle-down"></i></a>
+										<ul class="submenu">
+											<li><a th:href="@{/document/irRegistrarFactura}">Factura</a></li>
+											<li><a th:href="@{/document/irRegistrarFacturaL}">Letra</a></li>
+											<li><a th:href="@{/document/irRegistrarRecibo}">Recibo</a></li>
+								     		<li><a th:href="@{/document/irRegistrarCarteraFactura}">Cartera Factura</a></li>
+											<li><a th:href="@{/document/irRegistrarCarteraLetra}">Cartera Letra</a></li>
+											<li><a th:href="@{/document/irRegistrarCarteraRecibo}">Cartera Recibo</a></li>
+										</ul></li>
+								</div>
+
+
+							</ul>
+						</div>
+
+
+					</nav>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div th:fragment="header_paseador">
+
+		<div class="header-area" th:object="${walker}">
+			<div id="sticky-header" class="main-header-area">
+
+
+				<div class="main-menu  d-none d-lg-block ">
+					<nav class="navbar navbar-default  " role="navigation">
+
+
+
+						<div class="navbar-collapse collapse color-header">
+							<ul class="nav navbar-nav ">
+
+
+								<li class="pull-left"><a href="#"><img class="b"
+										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
+
+								<li class="pull-right"><a th:href="@{/walker/menu}"><img
+										class="b"
+										th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"
+										width="80" alt=""></a></li>
+								<li class="pull-right"><a
+									th:text="'Bienvenido, ' + ${walker.firstNames}"></a></li>
+
+								<div class="sin">
+									<li class="pull-left"><a th:href="@{/walker/bienvenido}">Inicio</a></li>
+									<li class="pull-left"><a th:href="@{/walker/consejos}">Consejos</a></li>
+									<li class="pull-left"><a th:href="@{/walker/noticias}">Noticias</a></li>
+
+
+								</div>
+
+
+							</ul>
+						</div>
+
+
+					</nav>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>
