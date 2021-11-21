@@ -12,7 +12,7 @@
 	<groupId>pe.edu.upc.spring</groupId>
 	<artifactId>AplicacionWeb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>AplicacionWeb</name>
 	<description>Proyecto demo spring boot</description>
 	<properties>
