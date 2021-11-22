@@ -2863,7 +2863,7 @@ public class DocumentController {
 			}
 		}
 
-		return dias;
+		return dias-1;
 
 	}
 }
