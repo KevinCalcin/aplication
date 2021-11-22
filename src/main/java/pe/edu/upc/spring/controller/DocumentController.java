@@ -2,6 +2,7 @@ package pe.edu.upc.spring.controller;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -2859,7 +2860,6 @@ public class DocumentController {
 		LocalDate fechaemision = LocalDate.of(y1, m1, d1);
 		LocalDate fechaPago = LocalDate.of(y2, m2, d2);
 		Period periodo = Period.between(fechaemision, fechaPago);
-	
-		return paymentDate.compareTo(dateOfIssue);
+		return periodo.getDays() + periodo.getMonths()*30+periodo.getYears()*365;
 	}
 }
