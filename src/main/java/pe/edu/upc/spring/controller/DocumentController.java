@@ -7,6 +7,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +55,7 @@ public class DocumentController {
 
 	@Autowired
 	private UserController userController;
- 
+
 	@Autowired
 	private IReasonCiService iReasonCiService;
 
@@ -67,7 +68,6 @@ public class DocumentController {
 	@Autowired
 	private IPurseService iPurseService;
 
-	
 	@Autowired
 	private IRateTypeService iRateTypeService;
 
@@ -97,7 +97,7 @@ public class DocumentController {
 	private int tasa_factura;
 	private int contador = 0;
 
-	@RequestMapping("/irRegistrarFactura")                   
+	@RequestMapping("/irRegistrarFactura")
 	public String irPaginaRegistrar(Model model) {
 		tasa_factura = 1;
 		contador = 0;
@@ -130,8 +130,8 @@ public class DocumentController {
 
 		return "factura";
 	}
-	
-	@RequestMapping("/irRegistrarRecibo")                   
+
+	@RequestMapping("/irRegistrarRecibo")
 	public String irRegistrarRecibo(Model model) {
 		tasa_factura = 1;
 		contador = 0;
@@ -164,13 +164,13 @@ public class DocumentController {
 
 		return "recibo";
 	}
-	
-	@RequestMapping("/irRegistrarCarteraFactura")                 //////CARTERA FACTURA
+
+	@RequestMapping("/irRegistrarCarteraFactura") ////// CARTERA FACTURA
 	public String irPaginaRegistrarCarteraFactura(Model model) {
 		tasa_factura = 1;
 		contador = 0;
 		resultados = 0;
-		
+
 		purse = null;
 		purse = new Purse();
 		rate = null;
@@ -201,14 +201,13 @@ public class DocumentController {
 
 		return "carteraFactura";
 	}
-	
-	
-	@RequestMapping("/irRegistrarCarteraRecibo")                 //////CARTERA RECIBO
+
+	@RequestMapping("/irRegistrarCarteraRecibo") ////// CARTERA RECIBO
 	public String irRegistrarCarteraRecibo(Model model) {
 		tasa_factura = 1;
 		contador = 0;
 		resultados = 0;
-		
+
 		purse = null;
 		purse = new Purse();
 		rate = null;
@@ -239,14 +238,13 @@ public class DocumentController {
 
 		return "carteraRecibo";
 	}
-	
-	
-	@RequestMapping("/irRegistrarCarteraLetra")                 //////CARTERA LETRA
+
+	@RequestMapping("/irRegistrarCarteraLetra") ////// CARTERA LETRA
 	public String irRegistrarCarteraLetra(Model model) {
 		tasa_factura = 1;
 		contador = 0;
 		resultados = 0;
-		
+
 		purse = null;
 		purse = new Purse();
 		rate = null;
@@ -277,13 +275,13 @@ public class DocumentController {
 
 		return "carteraLetra";
 	}
-	
-	@RequestMapping("/agregarFacturaCartera")                 //////CARTERA FACTURA
+
+	@RequestMapping("/agregarFacturaCartera") ////// CARTERA FACTURA
 	public String agregarFacturaCartera(Model model) {
 		tasa_factura = 1;
 		contador = 0;
 		resultados = 0;
-		
+
 		rate = null;
 		rate = new Rate();
 		document = new Document();
@@ -297,7 +295,7 @@ public class DocumentController {
 		listCostEliminadosCf = new ArrayList<Cost>();
 		listCostEliminadosCi = null;
 		listCostEliminadosCi = new ArrayList<Cost>();
-		
+
 		model.addAttribute("user", userController.sessionUser);
 		model.addAttribute("listReasonCi", iReasonCiService.listReasonCi());
 		model.addAttribute("listReasonCf", iReasonCfService.listReasonCf());
@@ -312,14 +310,13 @@ public class DocumentController {
 
 		return "carteraFactura";
 	}
-	
-	
-	@RequestMapping("/agregarReciboCartera")                 //////CARTERA RECIBO
+
+	@RequestMapping("/agregarReciboCartera") ////// CARTERA RECIBO
 	public String agregarReciboCartera(Model model) {
 		tasa_factura = 1;
 		contador = 0;
 		resultados = 0;
-		
+
 		rate = null;
 		rate = new Rate();
 		document = new Document();
@@ -333,7 +330,7 @@ public class DocumentController {
 		listCostEliminadosCf = new ArrayList<Cost>();
 		listCostEliminadosCi = null;
 		listCostEliminadosCi = new ArrayList<Cost>();
-		
+
 		model.addAttribute("user", userController.sessionUser);
 		model.addAttribute("listReasonCi", iReasonCiService.listReasonCi());
 		model.addAttribute("listReasonCf", iReasonCfService.listReasonCf());
@@ -348,8 +345,7 @@ public class DocumentController {
 
 		return "carteraRecibo";
 	}
-	
-	
+
 	@RequestMapping("/irRegistrarFacturaL")
 	public String irPaginaRegistrarL(Model model) {
 		tasa_factura = 1;
@@ -383,7 +379,6 @@ public class DocumentController {
 
 		return "letra";
 	}
-	
 
 	@RequestMapping("/iractualizarFactura")
 	public String iractualizarFactura(Model model) {
@@ -404,7 +399,7 @@ public class DocumentController {
 
 		return "factura";
 	}
-	
+
 	@RequestMapping("/iractualizarRecibo")
 	public String iractualizarRecibo(Model model) {
 
@@ -424,8 +419,8 @@ public class DocumentController {
 
 		return "recibo";
 	}
-	
-	@RequestMapping("/iractualizarCarteraFactura")  //CARTERA FACTURA
+
+	@RequestMapping("/iractualizarCarteraFactura") // CARTERA FACTURA
 	public String iractualizarCarteraFactura(Model model) {
 
 		model.addAttribute("user", userController.sessionUser);
@@ -441,44 +436,41 @@ public class DocumentController {
 		model.addAttribute("rate", rate);
 		model.addAttribute("resultados", resultados);
 		model.addAttribute("document", document);
-		
-		
-		if(purse.getIdPurse()>0) {
-		int pursepos = iPurseService.listPurse().size()-1;
-		pursepos = iPurseService.listPurse().get(pursepos).getIdPurse();
-		
-		
-		listDocumentPurse = null;
-		listDocumentPurse = new ArrayList<Document>();
-		listDocumentPurse = iDocumentService.findDocumentbyPurse(String.valueOf(pursepos));
-		
-		int tamano = listDocumentPurse.size();
-		double v_entregado =0;
-		double v_recibido =0;
-		int dias=0;
-		int transcurridos=0;
-		double TCEAT=0;
-		for (int i = 0; i < tamano; i++) {
-			Document d = listDocumentPurse.get(i);
-			v_entregado = v_entregado + d.getValueTotal();
-			v_recibido = v_recibido + d.getRecivedValue();
-			dias = dias + d.getRateDoc().getDays();
-			transcurridos = transcurridos+d.getDays();
-		}
 
-			
-		TCEAT = Math.pow(v_entregado / v_recibido, dias / (double) transcurridos) - 1;
-		purse.setTCEA(TCEAT*100);
-		purse.setTotalRecivedAmount(v_recibido);
-		iPurseService.save(purse);
+		if (purse.getIdPurse() > 0) {
+			int pursepos = iPurseService.listPurse().size() - 1;
+			pursepos = iPurseService.listPurse().get(pursepos).getIdPurse();
 
-		model.addAttribute("purse", purse);
-		model.addAttribute("listCarteraFactura",listDocumentPurse);
+			listDocumentPurse = null;
+			listDocumentPurse = new ArrayList<Document>();
+			listDocumentPurse = iDocumentService.findDocumentbyPurse(String.valueOf(pursepos));
+
+			int tamano = listDocumentPurse.size();
+			double v_entregado = 0;
+			double v_recibido = 0;
+			int dias = 0;
+			int transcurridos = 0;
+			double TCEAT = 0;
+			for (int i = 0; i < tamano; i++) {
+				Document d = listDocumentPurse.get(i);
+				v_entregado = v_entregado + d.getValueTotal();
+				v_recibido = v_recibido + d.getRecivedValue();
+				dias = dias + d.getRateDoc().getDays();
+				transcurridos = transcurridos + d.getDays();
+			}
+
+			TCEAT = Math.pow(v_entregado / v_recibido, dias / (double) transcurridos) - 1;
+			purse.setTCEA(TCEAT * 100);
+			purse.setTotalRecivedAmount(v_recibido);
+			iPurseService.save(purse);
+
+			model.addAttribute("purse", purse);
+			model.addAttribute("listCarteraFactura", listDocumentPurse);
 		}
 		return "carteraFactura";
 	}
 
-	@RequestMapping("/iractualizarCarteraRecibo")  //CARTERA RECIBO
+	@RequestMapping("/iractualizarCarteraRecibo") // CARTERA RECIBO
 	public String iractualizarCarteraRecibo(Model model) {
 
 		model.addAttribute("user", userController.sessionUser);
@@ -494,44 +486,41 @@ public class DocumentController {
 		model.addAttribute("rate", rate);
 		model.addAttribute("resultados", resultados);
 		model.addAttribute("document", document);
-		
-		
-		if(purse.getIdPurse()>0) {
-		int pursepos = iPurseService.listPurse().size()-1;
-		pursepos = iPurseService.listPurse().get(pursepos).getIdPurse();
-		
-		
-		listDocumentPurse = null;
-		listDocumentPurse = new ArrayList<Document>();
-		listDocumentPurse = iDocumentService.findDocumentbyPurse(String.valueOf(pursepos));
-		
-		int tamano = listDocumentPurse.size();
-		double v_entregado =0;
-		double v_recibido =0;
-		int dias=0;
-		int transcurridos=0;
-		double TCEAT=0;
-		for (int i = 0; i < tamano; i++) {
-			Document d = listDocumentPurse.get(i);
-			v_entregado = v_entregado + d.getValueTotal();
-			v_recibido = v_recibido + d.getRecivedValue();
-			dias = dias + d.getRateDoc().getDays();
-			transcurridos = transcurridos+d.getDays();
-		}
 
-			
-		TCEAT = Math.pow(v_entregado / v_recibido, dias / (double) transcurridos) - 1;
-		purse.setTCEA(TCEAT*100);
-		purse.setTotalRecivedAmount(v_recibido);
-		iPurseService.save(purse);
+		if (purse.getIdPurse() > 0) {
+			int pursepos = iPurseService.listPurse().size() - 1;
+			pursepos = iPurseService.listPurse().get(pursepos).getIdPurse();
 
-		model.addAttribute("purse", purse);
-		model.addAttribute("listCarteraFactura",listDocumentPurse);
+			listDocumentPurse = null;
+			listDocumentPurse = new ArrayList<Document>();
+			listDocumentPurse = iDocumentService.findDocumentbyPurse(String.valueOf(pursepos));
+
+			int tamano = listDocumentPurse.size();
+			double v_entregado = 0;
+			double v_recibido = 0;
+			int dias = 0;
+			int transcurridos = 0;
+			double TCEAT = 0;
+			for (int i = 0; i < tamano; i++) {
+				Document d = listDocumentPurse.get(i);
+				v_entregado = v_entregado + d.getValueTotal();
+				v_recibido = v_recibido + d.getRecivedValue();
+				dias = dias + d.getRateDoc().getDays();
+				transcurridos = transcurridos + d.getDays();
+			}
+
+			TCEAT = Math.pow(v_entregado / v_recibido, dias / (double) transcurridos) - 1;
+			purse.setTCEA(TCEAT * 100);
+			purse.setTotalRecivedAmount(v_recibido);
+			iPurseService.save(purse);
+
+			model.addAttribute("purse", purse);
+			model.addAttribute("listCarteraFactura", listDocumentPurse);
 		}
 		return "carteraRecibo";
 	}
-	
-	@RequestMapping("/iractualizarCarteraLetra")  //CARTERA LETRA
+
+	@RequestMapping("/iractualizarCarteraLetra") // CARTERA LETRA
 	public String iractualizarCarteraLetra(Model model) {
 
 		model.addAttribute("user", userController.sessionUser);
@@ -547,43 +536,40 @@ public class DocumentController {
 		model.addAttribute("rate", rate);
 		model.addAttribute("resultados", resultados);
 		model.addAttribute("document", document);
-		
-		
-		if(purse.getIdPurse()>0) {
-		int pursepos = iPurseService.listPurse().size()-1;
-		pursepos = iPurseService.listPurse().get(pursepos).getIdPurse();
-		
-		
-		listDocumentPurse = null;
-		listDocumentPurse = new ArrayList<Document>();
-		listDocumentPurse = iDocumentService.findDocumentbyPurse(String.valueOf(pursepos));
-		
-		int tamano = listDocumentPurse.size();
-		double v_entregado =0;
-		double v_recibido =0;
-		int dias=0;
-		int transcurridos=0;
-		double TCEAT=0;
-		for (int i = 0; i < tamano; i++) {
-			Document d = listDocumentPurse.get(i);
-			v_entregado = v_entregado + d.getValueTotal();
-			v_recibido = v_recibido + d.getRecivedValue();
-			dias = dias + d.getRateDoc().getDays();
-			transcurridos = transcurridos+d.getDays();
-		}
 
-			
-		TCEAT = Math.pow(v_entregado / v_recibido, dias / (double) transcurridos) - 1;
-		purse.setTCEA(TCEAT*100);
-		purse.setTotalRecivedAmount(v_recibido);
-		iPurseService.save(purse);
+		if (purse.getIdPurse() > 0) {
+			int pursepos = iPurseService.listPurse().size() - 1;
+			pursepos = iPurseService.listPurse().get(pursepos).getIdPurse();
 
-		model.addAttribute("purse", purse);
-		model.addAttribute("listCarteraFactura",listDocumentPurse);
+			listDocumentPurse = null;
+			listDocumentPurse = new ArrayList<Document>();
+			listDocumentPurse = iDocumentService.findDocumentbyPurse(String.valueOf(pursepos));
+
+			int tamano = listDocumentPurse.size();
+			double v_entregado = 0;
+			double v_recibido = 0;
+			int dias = 0;
+			int transcurridos = 0;
+			double TCEAT = 0;
+			for (int i = 0; i < tamano; i++) {
+				Document d = listDocumentPurse.get(i);
+				v_entregado = v_entregado + d.getValueTotal();
+				v_recibido = v_recibido + d.getRecivedValue();
+				dias = dias + d.getRateDoc().getDays();
+				transcurridos = transcurridos + d.getDays();
+			}
+
+			TCEAT = Math.pow(v_entregado / v_recibido, dias / (double) transcurridos) - 1;
+			purse.setTCEA(TCEAT * 100);
+			purse.setTotalRecivedAmount(v_recibido);
+			iPurseService.save(purse);
+
+			model.addAttribute("purse", purse);
+			model.addAttribute("listCarteraFactura", listDocumentPurse);
 		}
 		return "carteraLetra";
 	}
-	
+
 	@RequestMapping("/iractualizarLetra")
 	public String iractualizarLetra(Model model) {
 
@@ -617,7 +603,7 @@ public class DocumentController {
 
 		return "redirect:/document/iractualizarFactura";
 	}
-	
+
 	@RequestMapping("/arecibo")
 	public String arecibo(Model model) {
 		if (tasa_factura == 1) {
@@ -631,7 +617,7 @@ public class DocumentController {
 
 		return "redirect:/document/iractualizarRecibo";
 	}
-	
+
 	@RequestMapping("/CarteraRecibo")
 	public String CarteraRecibo(Model model) {
 		if (tasa_factura == 1) {
@@ -645,9 +631,8 @@ public class DocumentController {
 
 		return "redirect:/document/iractualizarCarteraRecibo";
 	}
-	
-	
-	@RequestMapping("/ab")          //CARTERA FCTURA
+
+	@RequestMapping("/ab") // CARTERA FCTURA
 	public String carteraFactura(Model model) {
 		if (tasa_factura == 1) {
 			rate.setRateType(iRateTypeService.listRateType().get(1));
@@ -660,8 +645,8 @@ public class DocumentController {
 
 		return "redirect:/document/iractualizarCarteraFactura";
 	}
-	
-	@RequestMapping("/abc")          //CARTERA LETRA
+
+	@RequestMapping("/abc") // CARTERA LETRA
 	public String abc(Model model) {
 		if (tasa_factura == 1) {
 			rate.setRateType(iRateTypeService.listRateType().get(1));
@@ -674,7 +659,7 @@ public class DocumentController {
 
 		return "redirect:/document/iractualizarCarteraLetra";
 	}
-	
+
 	@RequestMapping("/al")
 	public String al(Model model) {
 		if (tasa_factura == 1) {
@@ -689,7 +674,6 @@ public class DocumentController {
 		return "redirect:/document/iractualizarLetra";
 	}
 
-
 	@RequestMapping("/registrarCostosIniciales")
 	public String registrarCostoIniciales(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
 			throws ParseException {
@@ -703,7 +687,7 @@ public class DocumentController {
 		return "redirect:/document/iractualizarFactura";
 
 	}
-	
+
 	@RequestMapping("/registrarCostosInicialesRecibo")
 	public String registrarCostosInicialesRecibo(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
 			throws ParseException {
@@ -717,10 +701,9 @@ public class DocumentController {
 		return "redirect:/document/iractualizarRecibo";
 
 	}
-	
-	@RequestMapping("/registrarCostosInicialesCarteraFactura")             //CARTERA FACTURA
-	public String v(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
-			throws ParseException {
+
+	@RequestMapping("/registrarCostosInicialesCarteraFactura") // CARTERA FACTURA
+	public String v(@ModelAttribute Cost objCost, BindingResult binRes, Model model) throws ParseException {
 
 		objCost.setIdRef(contador);
 
@@ -731,8 +714,8 @@ public class DocumentController {
 		return "redirect:/document/iractualizarCarteraFactura";
 
 	}
-	
-	@RequestMapping("/registrarCostosInicialesCarteraLetra")             //CARTERA LETRA
+
+	@RequestMapping("/registrarCostosInicialesCarteraLetra") // CARTERA LETRA
 	public String registrarCostosInicialesCarteraLetra(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
 			throws ParseException {
 
@@ -745,9 +728,8 @@ public class DocumentController {
 		return "redirect:/document/iractualizarCarteraLetra";
 
 	}
-	
-	
-	@RequestMapping("/registrarCostosInicialesCarteraRecibo")             //CARTERA LETRA
+
+	@RequestMapping("/registrarCostosInicialesCarteraRecibo") // CARTERA LETRA
 	public String registrarCostosInicialesCarteraRecibo(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
 			throws ParseException {
 
@@ -760,8 +742,7 @@ public class DocumentController {
 		return "redirect:/document/iractualizarCarteraRecibo";
 
 	}
-	
-	
+
 	@RequestMapping("/registrarCostoInicialesL")
 	public String registrarCostoInicialesL(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
 			throws ParseException {
@@ -788,7 +769,7 @@ public class DocumentController {
 		return "redirect:/document/iractualizarFactura";
 
 	}
-	
+
 	@RequestMapping("/registrarCostosFinalesRecibo")
 	public String registrarCostosFinalesRecibo(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
 			throws ParseException {
@@ -801,8 +782,8 @@ public class DocumentController {
 		return "redirect:/document/iractualizarRecibo";
 
 	}
-	
-	@RequestMapping("/registrarCostosFinalesCarteraFactura")   //CARTERA FACTURA
+
+	@RequestMapping("/registrarCostosFinalesCarteraFactura") // CARTERA FACTURA
 	public String registrarCostosFinalesCarteraFactura(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
 			throws ParseException {
 
@@ -814,8 +795,8 @@ public class DocumentController {
 		return "redirect:/document/iractualizarCarteraFactura";
 
 	}
-	
-	@RequestMapping("/registrarCostosFinalesCarteraLetra")   //CARTERA LETRA
+
+	@RequestMapping("/registrarCostosFinalesCarteraLetra") // CARTERA LETRA
 	public String registrarCostosFinalesCarteraLetra(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
 			throws ParseException {
 
@@ -827,8 +808,8 @@ public class DocumentController {
 		return "redirect:/document/iractualizarCarteraLetra";
 
 	}
-	
-	@RequestMapping("/registrarCostosFinalesCarteraRecibo")   //CARTERA LETRA
+
+	@RequestMapping("/registrarCostosFinalesCarteraRecibo") // CARTERA LETRA
 	public String registrarCostosFinalesCarteraRecibo(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
 			throws ParseException {
 
@@ -840,8 +821,8 @@ public class DocumentController {
 		return "redirect:/document/iractualizarCarteraRecibo";
 
 	}
-	
-	@ RequestMapping("/registrarCostosFinalesL")
+
+	@RequestMapping("/registrarCostosFinalesL")
 	public String registrarCostoFinalesL(@ModelAttribute Cost objCost, BindingResult binRes, Model model)
 			throws ParseException {
 
@@ -897,8 +878,7 @@ public class DocumentController {
 		return "redirect:/document/iractualizarFactura";
 
 	}
-	
-	
+
 	@RequestMapping("/ModificarRecibo")
 	public String ModificarRecibo() throws ParseException {
 		listCostCi = null;
@@ -942,7 +922,7 @@ public class DocumentController {
 		return "redirect:/document/iractualizarRecibo";
 
 	}
-	
+
 	@RequestMapping("/ModificarL")
 	public String modificarL() throws ParseException {
 		listCostCi = null;
@@ -1087,16 +1067,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -1206,16 +1186,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -1356,16 +1336,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -1475,16 +1455,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -1525,10 +1505,9 @@ public class DocumentController {
 
 	}
 
-	
 	@RequestMapping("/CrearCarteraFactura")
-	public String CrearCarteraFactura(@ModelAttribute Document objDocument, @ModelAttribute Rate objRate, BindingResult binRes,
-			Model model) throws ParseException {
+	public String CrearCarteraFactura(@ModelAttribute Document objDocument, @ModelAttribute Rate objRate,
+			BindingResult binRes, Model model) throws ParseException {
 
 		resultados = 1;
 
@@ -1628,16 +1607,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -1750,16 +1729,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -1800,19 +1779,17 @@ public class DocumentController {
 		document = new Document();
 		rate = null;
 		rate = new Rate();
-		listCostCi= null;
-		listCostCf=null;
-		listCostCi= new ArrayList<Cost>();
-		listCostCf=new ArrayList<Cost>();
+		listCostCi = null;
+		listCostCf = null;
+		listCostCi = new ArrayList<Cost>();
+		listCostCf = new ArrayList<Cost>();
 		return "redirect:/document/iractualizarCarteraFactura";
 
 	}
 
-
-	
 	@RequestMapping("/CrearCarteraLetra")
-	public String CrearCarteraLetra(@ModelAttribute Document objDocument, @ModelAttribute Rate objRate, BindingResult binRes,
-			Model model) throws ParseException {
+	public String CrearCarteraLetra(@ModelAttribute Document objDocument, @ModelAttribute Rate objRate,
+			BindingResult binRes, Model model) throws ParseException {
 
 		resultados = 1;
 
@@ -1912,16 +1889,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -2034,16 +2011,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -2084,18 +2061,17 @@ public class DocumentController {
 		document = new Document();
 		rate = null;
 		rate = new Rate();
-		listCostCi= null;
-		listCostCf=null;
-		listCostCi= new ArrayList<Cost>();
-		listCostCf=new ArrayList<Cost>();
+		listCostCi = null;
+		listCostCf = null;
+		listCostCi = new ArrayList<Cost>();
+		listCostCf = new ArrayList<Cost>();
 		return "redirect:/document/iractualizarCarteraLetra";
 
 	}
 
-	
 	@RequestMapping("/CrearCarteraRecibo")
-	public String CrearCarteraRecibo(@ModelAttribute Document objDocument, @ModelAttribute Rate objRate, BindingResult binRes,
-			Model model) throws ParseException {
+	public String CrearCarteraRecibo(@ModelAttribute Document objDocument, @ModelAttribute Rate objRate,
+			BindingResult binRes, Model model) throws ParseException {
 
 		resultados = 1;
 
@@ -2195,16 +2171,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -2317,16 +2293,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -2367,16 +2343,14 @@ public class DocumentController {
 		document = new Document();
 		rate = null;
 		rate = new Rate();
-		listCostCi= null;
-		listCostCf=null;
-		listCostCi= new ArrayList<Cost>();
-		listCostCf=new ArrayList<Cost>();
+		listCostCi = null;
+		listCostCf = null;
+		listCostCi = new ArrayList<Cost>();
+		listCostCf = new ArrayList<Cost>();
 		return "redirect:/document/iractualizarCarteraRecibo";
 
 	}
 
-	
-	
 	@RequestMapping("/CrearLetra")
 	public String mostrarL(@ModelAttribute Document objDocument, @ModelAttribute Rate objRate, BindingResult binRes,
 			Model model) throws ParseException {
@@ -2477,16 +2451,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -2596,16 +2570,16 @@ public class DocumentController {
 						Cost cost = listCostEliminadosCf.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-						
+
 						}
 
 					}
 					m = listCostEliminadosCi.size();
-					for (int i = 0; i < m; i++) {  // elimina registro de cf
+					for (int i = 0; i < m; i++) { // elimina registro de cf
 						Cost cost = listCostEliminadosCi.get(i);
 						if (cost.getDocument() != null) {
 							iCostService.delete(cost.getIdCost());
-							
+
 						}
 
 					}
@@ -2645,14 +2619,14 @@ public class DocumentController {
 		return "redirect:/document/iractualizarLetra";
 
 	}
-	
+
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
 
 			int n = listCostCf.size();
 			int m = listCostCi.size();
-			System.out.println(n+"   "+m);
+			System.out.println(n + "   " + m);
 			if (id != null) {
 
 				for (int i = 0; i < n; i++) {
@@ -2678,14 +2652,14 @@ public class DocumentController {
 		}
 		return "redirect:/document/iractualizarFactura";
 	}
-	
+
 	@RequestMapping("/eliminarR")
 	public String eliminarR(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
 
 			int n = listCostCf.size();
 			int m = listCostCi.size();
-			System.out.println(n+"   "+m);
+			System.out.println(n + "   " + m);
 			if (id != null) {
 
 				for (int i = 0; i < n; i++) {
@@ -2718,7 +2692,7 @@ public class DocumentController {
 
 			int n = listCostCf.size();
 			int m = listCostCi.size();
-			System.out.println(n+"   "+m);
+			System.out.println(n + "   " + m);
 			if (id != null) {
 
 				for (int i = 0; i < n; i++) {
@@ -2744,14 +2718,15 @@ public class DocumentController {
 		}
 		return "redirect:/document/iractualizarLetra";
 	}
-	
+
 	@RequestMapping("/eliminarCarteraFactura")
-	public String eliminarCarteraFactura(Map<String, Object> model, @RequestParam(value = "id") Integer id) {  //////CARTERA FACTURA
+	public String eliminarCarteraFactura(Map<String, Object> model, @RequestParam(value = "id") Integer id) { ////// CARTERA
+																												////// FACTURA
 		try {
 
 			int n = listCostCf.size();
 			int m = listCostCi.size();
-			System.out.println(n+"   "+m);
+			System.out.println(n + "   " + m);
 			if (id != null) {
 
 				for (int i = 0; i < n; i++) {
@@ -2777,14 +2752,15 @@ public class DocumentController {
 		}
 		return "redirect:/document/iractualizarCarteraFactura";
 	}
-	
+
 	@RequestMapping("/eliminarCarteraLetra")
-	public String eliminarCarteraLetra(Map<String, Object> model, @RequestParam(value = "id") Integer id) {  //////CARTERA LETRA
+	public String eliminarCarteraLetra(Map<String, Object> model, @RequestParam(value = "id") Integer id) { ////// CARTERA
+																											////// LETRA
 		try {
 
 			int n = listCostCf.size();
 			int m = listCostCi.size();
-			System.out.println(n+"   "+m);
+			System.out.println(n + "   " + m);
 			if (id != null) {
 
 				for (int i = 0; i < n; i++) {
@@ -2810,14 +2786,15 @@ public class DocumentController {
 		}
 		return "redirect:/document/iractualizarCarteraLetra";
 	}
-	
+
 	@RequestMapping("/eliminarCarteraRecibo")
-	public String eliminarCarteraRecibo(Map<String, Object> model, @RequestParam(value = "id") Integer id) {  //////CARTERA LETRA
+	public String eliminarCarteraRecibo(Map<String, Object> model, @RequestParam(value = "id") Integer id) { ////// CARTERA
+																												////// LETRA
 		try {
 
 			int n = listCostCf.size();
 			int m = listCostCi.size();
-			System.out.println(n+"   "+m);
+			System.out.println(n + "   " + m);
 			if (id != null) {
 
 				for (int i = 0; i < n; i++) {
@@ -2843,9 +2820,8 @@ public class DocumentController {
 		}
 		return "redirect:/document/iractualizarCarteraRecibo";
 	}
-	
-	
-	public int calcularEdad(Date dateOfIssue, Date paymentDate) {
+
+	/*public int calcularEdad(Date dateOfIssue, Date paymentDate) {
 		Calendar fecha1 = Calendar.getInstance();
 		Calendar fecha2 = Calendar.getInstance();
 		fecha1.setTime(dateOfIssue);
@@ -2860,6 +2836,34 @@ public class DocumentController {
 		LocalDate fechaemision = LocalDate.of(y1, m1, d1);
 		LocalDate fechaPago = LocalDate.of(y2, m2, d2);
 		Period periodo = Period.between(fechaemision, fechaPago);
-		return periodo.getDays() + periodo.getMonths()*30+periodo.getYears()*365;
+		return periodo.getDays() + periodo.getMonths() * 30 + periodo.getYears() * 365;
+	}
+*/
+	public static int calcularEdad(Date fechaIn, Date fechaFinal) {
+		GregorianCalendar fechaInicio = new GregorianCalendar();
+		fechaInicio.setTime(fechaIn);
+		GregorianCalendar fechaFin = new GregorianCalendar();
+		fechaFin.setTime(fechaFinal);
+		int dias = 0;
+		if (fechaFin.get(Calendar.YEAR) == fechaInicio.get(Calendar.YEAR)) {
+
+			dias = (fechaFin.get(Calendar.DAY_OF_YEAR) - fechaInicio.get(Calendar.DAY_OF_YEAR)) + 1;
+		} else {
+			int rangoAnyos = fechaFin.get(Calendar.YEAR) - fechaInicio.get(Calendar.YEAR);
+
+			for (int i = 0; i <= rangoAnyos; i++) {
+				int diasAnio = fechaInicio.isLeapYear(fechaInicio.get(Calendar.YEAR)) ? 366 : 365;
+				if (i == 0) {
+					dias = 1 + dias + (diasAnio - fechaInicio.get(Calendar.DAY_OF_YEAR));
+				} else if (i == rangoAnyos) {
+					dias = dias + fechaFin.get(Calendar.DAY_OF_YEAR);
+				} else {
+					dias = dias + diasAnio;
+				}
+			}
+		}
+
+		return dias;
+
 	}
 }
