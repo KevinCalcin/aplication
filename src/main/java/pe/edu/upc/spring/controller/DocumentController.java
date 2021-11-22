@@ -2859,6 +2859,7 @@ public class DocumentController {
 		LocalDate fechaemision = LocalDate.of(y1, m1, d1);
 		LocalDate fechaPago = LocalDate.of(y2, m2, d2);
 		Period periodo = Period.between(fechaemision, fechaPago);
-		return periodo.getDays();
+		
+		return dateOfIssue.compareTo(paymentDate);
 	}
 }
